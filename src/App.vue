@@ -30,7 +30,7 @@ data(){
     rotation1:180,
     rotation2:180,
     rotation3:180,
-    MidRotation:179,
+    MidRotation:178,
   }
 
 },
@@ -49,30 +49,36 @@ methods:{
       var HoursCricle=$('#HoursCricle');
       
       setInterval( ()=>{
-        this.rotation1++;
+        this.rotation1+=3;
         SecoundsCricle.css({transform:'rotateZ('+this.rotation1+'deg)'});
-
-        if(this.rotation1==this.maxRotation){
+        
+        if(this.rotation1>=this.maxRotation){
           this.rotation1=this.minRotation;
         }if(this.rotation1==this.MidRotation){
-          this.rotation2++;
-          console.log(this.rotation1)
-          if(this.rotation2==this.maxRotation){
-            this.rotation2==this.minRotation;
+          this.rotation2+=15;
+          
+          if(this.rotation2>=this.maxRotation){
+            this.rotation2=this.minRotation;
         }
           MinutesCricle.css({transform:'rotateZ('+this.rotation2+'deg)'});
 
         
-
-        }if(this.rotation2==this.MidRotation){
-          this.rotation3++;
-          if(this.rotation3==this.maxRotation){
-            this.rotation3==this.minRotation;
+          
+        }if(this.rotation2==181){
+            this.rotation2+=1;
+            this.rotation3+=10;
+          if(this.rotation3>=this.maxRotation){
+            this.rotation3=this.minRotation;
           }
           HoursCricle.css({transform:'rotateZ('+this.rotation3+'deg)'});
+          setTimeout( ()=>{
+           this.rotation2-=1; 
+          },1000 )
+          
+          
         }
 
-
+        
       },0 );
 
 
